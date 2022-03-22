@@ -1,7 +1,9 @@
 import Client from "../core/Client.ts"
+import { IconEdit } from "./Icons.tsx"
+import { IconDelete } from "./Icons.tsx"
 
 interface TableProps {
-    clients: Clients[]
+    clients: Client[]
 }
 
 export default function Table (props:TableProps) {
@@ -12,7 +14,22 @@ export default function Table (props:TableProps) {
                 <th className="text-left p-4">Code</th>
                 <th className="text-left p-4">Name</th>
                 <th className="text-left p-4">Age</th>
+                <th className="text-left p-4">Actions</th>
+                
             </tr>
+        )
+    }
+
+    function renderAction(client: Client){
+        return (
+          <td>
+                <button className="flex justify-center items-center text-green-600 rounded-full p-2 m-1 hover:bg-green-100 ">
+                    { IconEdit }
+                </button>
+                <button className="flex justify-center items-center text-red-600 rounded-full p-2 m-1 hover:bg-red-100 ">
+                    { IconDelete }
+                </button>
+          </td>  
         )
     }
 
@@ -23,6 +40,7 @@ export default function Table (props:TableProps) {
                     <td className="text-left p-4">{Client.id}</td>
                     <td className="text-left p-4">{Client.name}</td>
                     <td className="text-left p-4">{Client.age}</td>
+                    {renderAction(Client)}
                 </tr>
             )
         })
